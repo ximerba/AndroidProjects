@@ -1,6 +1,7 @@
-public class MapsActivity1 extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity1 extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private GoogleMap mMap;
+    private Marker markerGeointeres;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +33,21 @@ public class MapsActivity1 extends FragmentActivity implements OnMapReadyCallbac
 
         LatLng rambla = new LatLng(-34.914521, -56.171696);
         mMap.addMarker(new MarkerOptions().position(rambla).title("Rambla Wilson"));
-
+        
+        //markerGeointeres
+        LatLng geoinuevo = new LatLng(-34.920367, -56.160043);
+        markerGeointeres = GoogleMap.addMarker(new MarkerOptions().position(geoinuevo).title("Mi marcador"));
+        
+        //Camera
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(centro, 5));
+        googleMap.setOnMarkerClickListener(this);
 
-
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        if(marker.equals(markerGeointeres)){
+            Toast.makeText(this,"Mi prueba",Toast.LENGTH_SHORT).show();
+        }
+        return false;
+    }
     }
 }
