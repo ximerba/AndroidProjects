@@ -13,34 +13,36 @@ public class MapsActivity1 extends FragmentActivity implements OnMapReadyCallbac
         mapFragment.getMapAsync(this);
     }
 
-
-    @Override
+   @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
 
         LatLng centro = new LatLng(-34.905904, -56.191357);
-        mMap.addMarker(new MarkerOptions().position(centro).title("Centro de Montevideo"));
+        mMap.addMarker(new MarkerOptions().position(centro).draggable(true).title("Centro de Montevideo").snippet("Corazón económico y cultural de la capital del país").icon(BitmapDescriptorFactory.fromResource(R.drawable.linros)));
 
 
         LatLng cvieja = new LatLng(-34.906494, -56.208187);
-        mMap.addMarker(new MarkerOptions().position(cvieja).title("Ciudad vieja"));
+        mMap.addMarker(new MarkerOptions().position(cvieja).draggable(true).title("Ciudad vieja").snippet("Parte antigua de la ciudad").icon(BitmapDescriptorFactory.fromResource(R.drawable.trofeo)));
 
 
         LatLng pcarretas = new LatLng(-34.920367, -56.160043);
-        mMap.addMarker(new MarkerOptions().position(pcarretas).title("Punta Carretas"));
+        mMap.addMarker(new MarkerOptions().position(pcarretas).draggable(true).title("Punta Carretas").snippet("Zona donde converge la historia y el comercio"));
 
 
         LatLng rambla = new LatLng(-34.914521, -56.171696);
-        mMap.addMarker(new MarkerOptions().position(rambla).title("Rambla Wilson"));
-        
+        mMap.addMarker(new MarkerOptions().position(rambla).draggable(true).title("Rambla Wilson").snippet("Remanso de tranquilidad costera"));
+
         //markerGeointeres
         LatLng geoinuevo = new LatLng(-34.920367, -56.160043);
         markerGeointeres = GoogleMap.addMarker(new MarkerOptions().position(geoinuevo).title("Mi marcador"));
-        
-        //Camera
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(centro, 5));
+
+
+        //Camara
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(centro, 15));
+
         googleMap.setOnMarkerClickListener(this);
+    }
 
     @Override
     public boolean onMarkerClick(Marker marker) {
@@ -49,5 +51,5 @@ public class MapsActivity1 extends FragmentActivity implements OnMapReadyCallbac
         }
         return false;
     }
-    }
 }
+
